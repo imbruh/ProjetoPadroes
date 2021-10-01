@@ -21,8 +21,7 @@ export class UsuarioNull extends Usuario {
 export class UsuarioRepository{
     public criar(usuario: Usuario): void {
         usuario.id = 1;
-        
-        console.log("Usuario criado")
+    
     }
     
     public buscar(id: number): string {  

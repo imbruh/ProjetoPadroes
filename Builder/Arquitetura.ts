@@ -1,3 +1,5 @@
+import { Builder } from "./Builder";
+
 export class Arquitetura
  {
     private builder: Builder;

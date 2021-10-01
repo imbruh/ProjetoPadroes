@@ -1,5 +1,5 @@
 import { Quarto } from "./Quarto";
-
+import {Builder} from "./Builder";
 export class MontarQuarto implements Builder {
     private quarto: Quarto;
 

@@ -1,4 +1,4 @@
-interface Builder {
+export interface Builder {
     adicionarCama(): void;
     adicionarAbajur(): void;
     adicionarGuardaRoupa(): void;
