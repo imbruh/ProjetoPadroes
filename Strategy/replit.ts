@@ -6,30 +6,7 @@ export class Pedido {
     constructor(preco: number) {
         this.preco = preco;
     }
-
-    public getCodigo(): number {
-        return this.codigo;
-    }
-
-    public setCodigo(codigo: number): void {
-        this.codigo = codigo;
-    }
-
-    public getProdutos(): string[] {
-        return this.produtos;
-    }
-
-    public setProdutos(produtos: string[]): void {
-        this.produtos = produtos;
-    }
-
-    public getPreco(): number {
-        return this.preco;
-    }
-
-    public setPreco(preco: number): void {
-        this.preco = preco;
-    }
+  
 }
 
 export interface StrategyInterface {
@@ -48,6 +25,12 @@ export class DinheiroStrategy implements StrategyInterface{
     }
 }
 
+export class BoletoStrategy implements StrategyInterface{
+    public aplicarReajustePreco(pedido: Pedido) {
+        return pedido.preco + (pedido.preco * 0.025) ;
+    }
+}
+
 export class CalcularPreco {
     private estrategiaPreco: StrategyInterface;
 
@@ -63,9 +46,12 @@ export class CalcularPreco {
 const pedido = new Pedido(50);
 const calculaPrecoCredito = new CalcularPreco(new CreditoStrategy());
 const calculaPrecoDinheiro = new CalcularPreco(new DinheiroStrategy());
+const calculaPrecoBoleto = new CalcularPreco(new BoletoStrategy());
 
 const valorComReajusteDinheiro = calculaPrecoDinheiro.calcularPreco(pedido); 
 const valorComReajusteCredito = calculaPrecoCredito.calcularPreco(pedido);
+const valorComReajusteBoleto = calculaPrecoBoleto.calcularPreco(pedido);
 
 console.log("O valor com reajuste do pagamento feito no dinheiro é: R$", valorComReajusteDinheiro);
 console.log("O valor com reajuste do pagamento feito no crédito é: R$", valorComReajusteCredito);
+console.log("O valor com reajuste do pagamento feito no boleto é: R$", valorComReajusteBoleto);
